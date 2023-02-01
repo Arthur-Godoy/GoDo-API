@@ -16,6 +16,8 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('tasks', [TaskController::class, 'index']);
+Route::get('tasks/allConcluded', [TaskController::class, 'allConcluded']);
+Route::get('tasks/allToDo', [TaskController::class, 'allToDo']);
 Route::get('tasks/{id}', [TaskController::class, 'show']);
 Route::post('tasks', [TaskController::class, 'store']);
 Route::delete('tasks/{id}', [TaskController::class, 'delete']);

@@ -24,7 +24,7 @@ class TaskController extends Controller
     public function update(Request $request, $id){
         $task = Task::findOrFail($id);
         $task->name = $request->name;
-        $task->finishDate = $request->date;
+        $task->finishDate = $request->finishDate;
         $task->description = $request->description;
         $task->concluded = $request->concluded;
 
@@ -35,11 +35,19 @@ class TaskController extends Controller
     public function store(Request $request){
         $task = new Task;
         $task->name = $request->name;
-        $task->finishDate = $request->date;
+        $task->finishDate = $request->finishDate;
         $task->description = $request->description;
         $task->concluded = $request->concluded;
 
         $task->save();
         return response()->json($task, 200);
+    }
+
+    public function allConcluded(){
+        return Task::all()->where('concluded', 1);
+    }
+
+    public function allToDo(){
+        return Task::all()->where('concluded', 0);
     }
 }
