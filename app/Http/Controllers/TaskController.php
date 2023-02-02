@@ -42,12 +42,4 @@ class TaskController extends Controller
         $task->save();
         return response()->json($task, 200);
     }
-
-    public function allConcluded(){
-        return Task::all()->where('concluded', 1);
-    }
-
-    public function allToDo(){
-        return Task::all()->where('concluded', 0);
-    }
 }
